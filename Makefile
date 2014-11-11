@@ -3,13 +3,13 @@ CC           = g++
 FLAGS        = -std=c++11
 CCFLAGS      = -MMD -flto -Wall -Wextra -march=native
 LDFLAGS      = -lm
-DEBUGFLAGS   = -O0 -ggdb3
 RELEASEFLAGS = -O3 -fwhole-program -DNDEBUG
+DEBUGFLAGS   = -O0 -ggdb3
 
-ifdef RELEASE
-    CCFLAGS += $(RELEASEFLAGS)
-else
+ifdef DEBUG
     CCFLAGS += $(DEBUGFLAGS)
+else
+    CCFLAGS += $(RELEASEFLAGS)
 endif
 
 SOURCES = $(wildcard src/*.cpp)
