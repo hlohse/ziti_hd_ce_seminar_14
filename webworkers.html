@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<p>Count numbers: <output id="latency"></output></p>
+<button onclick="latencyStart()">Determine</button> 
+<button onclick="latencyStop()">Stop</button> 
+<br><br>
+
+<script src="utility.js"></script>
+<script>
+var w_latency;
+var latency_trips = 10000;
+var latency_i;
+var latency_array = getArray(1);
+var latency_start;
+
+function latencyStart() {
+    latency_i = latency_trips;
+
+    if(typeof(Worker) !== "undefined") {
+        if(typeof(w_latency) == "undefined") {
+            w_latency = new Worker("ww_latency.js");
+            
+            w_latency.addEventListener('message', function(event) {
+                latency_i -= 1;
+                if (latency_i != 0) {
+                    w_latency.postMessage(latency_array);
+                }
+                else {
+                    var duration = timeMs() - latency_start;
+                    var overhead_start = timeMs();
+
+                    for (var i = 0; i < latency_trips; i++) {
+                    }
+
+                    duration -= timeMs() - overhead_start;
+                    document.getElementById("latency").innerHTML = duration;
+                }
+            }, false);
+        
+            latency_start = timeMs();
+            w_latency.postMessage(latency_array);
+        }
+    } else {
+        document.getElementById("latency").innerHTML = "ERROR: No Web Worker support.";
+    }
+}
+
+function latencyStop() {
+    w_latency.terminate();
+    w_latency = undefined;
+}
+</script>
+
+</body>
+</html>
+
