@@ -5,6 +5,6 @@ function getArray(bytes) {
 }
 
 function timeMs() {
-    return performance.now();
+    return performance.now() * 1000;
 }
 

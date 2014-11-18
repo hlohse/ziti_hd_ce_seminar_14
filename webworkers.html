@@ -1,26 +1,37 @@
 <!DOCTYPE html>
-<html>
+<html
 <body>
 
-<p>Count numbers: <output id="latency"></output></p>
+<p>Latency: <output id="latency"></output></p>
 <button onclick="latencyStart()">Determine</button> 
 <button onclick="latencyStop()">Stop</button> 
+<p>Bandwidth: <textarea id="bandwidth"></textarea></p>
+<button onclick="bandwidthStart()">Determine</button> 
+<button onclick="bandwidthStop()">Stop</button> 
 <br><br>
 
 <script src="utility.js"></script>
 <script>
+var iterations = 1000;
+
 var w_latency;
-var latency_trips = 10000;
 var latency_i;
 var latency_array = getArray(1);
 var latency_start;
 
+var w_bandwidth;
+var bandwidth_i;
+var bandwidth_array_size_max = 128 * 1024 * 1024;
+var bandwidth_array_size = 1;
+var bandwidth_array = getArray(bandwidth_array_size);
+var bandwidth_start;
+
 function latencyStart() {
-    latency_i = latency_trips;
+    latency_i = iterations;
 
     if(typeof(Worker) !== "undefined") {
         if(typeof(w_latency) == "undefined") {
-            w_latency = new Worker("ww_latency.js");
+            w_latency = new Worker("ww_roundtrip.js");
             
             w_latency.addEventListener('message', function(event) {
                 latency_i -= 1;
@@ -31,11 +42,12 @@ function latencyStart() {
                     var duration = timeMs() - latency_start;
                     var overhead_start = timeMs();
 
-                    for (var i = 0; i < latency_trips; i++) {
+                    for (var i = 0; i < iterations; i++) {
                     }
 
                     duration -= timeMs() - overhead_start;
-                    document.getElementById("latency").innerHTML = duration;
+                    document.getElementById("latency").innerHTML =
+                    duration/iterations;
                 }
             }, false);
         
@@ -45,6 +57,57 @@ function latencyStart() {
     } else {
         document.getElementById("latency").innerHTML = "ERROR: No Web Worker support.";
     }
+}
+
+function bandwidthStart() {
+    bandwidth_i = iterations;
+
+    if(typeof(Worker) !== "undefined") {
+        if(typeof(w_bandwidth) == "undefined") {
+            w_bandwidth = new Worker("ww_roundtrip.js");
+            
+            w_bandwidth.addEventListener('message', function(event) {
+                if (bandwidth_array_size == bandwidth_array_size_max) {
+                    return;
+                }
+                
+                bandwidth_i -= 1;
+                
+                if (bandwidth_i != 0) {
+                    w_bandwidth.postMessage(bandwidth_array);
+                }
+                else {
+                    var duration = timeMs() - bandwidth_start;
+                    var overhead_start = timeMs();
+
+                    for (var i = 0; i < iterations; i++) {
+                    }
+
+                    duration -= timeMs() - overhead_start;
+                    document.getElementById("bandwidth").innerHTML +=
+                    bandwidth_array_size + " " + duration/iterations + "\n";
+
+                    if (bandwidth_array_size != bandwidth_array_size_max) {
+                        bandwidth_array_size *= 2;
+                        bandwidth_array = getArray(bandwidth_array_size);
+                        bandwidth_i = iterations;
+                        bandwidth_start = timeMs();
+                        w_bandwidth.postMessage(bandwidth_array);
+                    }
+                }
+            }, false);
+        
+            bandwidth_start = timeMs();
+            w_bandwidth.postMessage(bandwidth_array);
+        }
+    } else {
+        document.getElementById("bandwidth").innerHTML = "ERROR: No Web Worker support.";
+    }
+}
+
+function bandwidthStop() {
+    w_bandwidth.terminate();
+    w_bandwidth = undefined;
 }
 
 function latencyStop() {
