@@ -47,7 +47,7 @@ function latencyStart() {
 
                     duration -= timeMs() - overhead_start;
                     document.getElementById("latency").innerHTML =
-                    duration/iterations;
+                    (duration/iterations)/2;
                 }
             }, false);
         
@@ -84,8 +84,11 @@ function bandwidthStart() {
                     }
 
                     duration -= timeMs() - overhead_start;
+                    duration = (duration/iterations)/2;
                     document.getElementById("bandwidth").innerHTML +=
-                    bandwidth_array_size + " " + duration/iterations + "\n";
+                        bandwidth_array_size + " B "
+                    +   duration + " ms "
+                    +   (bandwidth_array_size/1024)/(duration/1000) + " kB/s\n";
 
                     if (bandwidth_array_size != bandwidth_array_size_max) {
                         bandwidth_array_size *= 2;
