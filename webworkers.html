@@ -8,11 +8,17 @@
 <p>Bandwidth: <textarea id="bandwidth"></textarea></p>
 <button onclick="bandwidthStart()">Determine</button> 
 <button onclick="bandwidthStop()">Stop</button> 
+<p>Transfer Latency: <output id="transfer_latency"></output></p>
+<button onclick="transferLatencyStart()">Determine</button> 
+<button onclick="transferLatencyStop()">Stop</button> 
+<p>Transfer Bandwidth: <textarea id="transfer_bandwidth"></textarea></p>
+<button onclick="transferBandwidthStart()">Determine</button> 
+<button onclick="transferBandwidthStop()">Stop</button> 
 <br><br>
 
 <script src="utility.js"></script>
 <script>
-var iterations = 1000;
+var iterations = 10000;
 
 var w_latency;
 var latency_i;
@@ -21,10 +27,21 @@ var latency_start;
 
 var w_bandwidth;
 var bandwidth_i;
-var bandwidth_array_size_max = 128 * 1024 * 1024;
+var bandwidth_array_size_max = 8 * 1024 * 1024;
 var bandwidth_array_size = 1;
 var bandwidth_array = getArray(bandwidth_array_size);
 var bandwidth_start;
+
+var w_transfer_latency;
+var transfer_latency_i;
+var transfer_latency_array = getArray(1);
+var transfer_latency_start;
+
+var w_transfer_bandwidth;
+var transfer_bandwidth_i;
+var transfer_bandwidth_array_size = 1;
+var transfer_bandwidth_array = getArray(transfer_bandwidth_array_size);
+var transfer_bandwidth_start;
 
 function latencyStart() {
     latency_i = iterations;
@@ -67,7 +84,7 @@ function bandwidthStart() {
             w_bandwidth = new Worker("ww_roundtrip.js");
             
             w_bandwidth.addEventListener('message', function(event) {
-                if (bandwidth_array_size == bandwidth_array_size_max) {
+                if (bandwidth_array_size > bandwidth_array_size_max) {
                     return;
                 }
                 
@@ -90,7 +107,7 @@ function bandwidthStart() {
                     +   duration + " ms "
                     +   (bandwidth_array_size/1024)/(duration/1000) + " kB/s\n";
 
-                    if (bandwidth_array_size != bandwidth_array_size_max) {
+                    if (bandwidth_array_size <= bandwidth_array_size_max) {
                         bandwidth_array_size *= 2;
                         bandwidth_array = getArray(bandwidth_array_size);
                         bandwidth_i = iterations;
@@ -108,14 +125,111 @@ function bandwidthStart() {
     }
 }
 
-function bandwidthStop() {
-    w_bandwidth.terminate();
-    w_bandwidth = undefined;
+function transferLatencyStart() {
+    transfer_latency_i = iterations;
+
+    if(typeof(Worker) !== "undefined") {
+        if(typeof(w_latency) == "undefined") {
+            w_transfer_latency = new Worker("ww_transfer_roundtrip.js");
+            
+            w_transfer_latency.addEventListener('message', function(event) {
+                transfer_latency_i -= 1;
+                if (transfer_latency_i != 0) {
+                    w_transfer_latency.postMessage(
+                            event.data, [event.data]);
+                }
+                else {
+                    var duration = timeMs() - transfer_latency_start;
+                    var overhead_start = timeMs();
+
+                    for (var i = 0; i < iterations; i++) {
+                    }
+
+                    duration -= timeMs() - overhead_start;
+                    document.getElementById("transfer_latency").innerHTML =
+                    (duration/iterations)/2;
+                }
+            }, false);
+        
+            transfer_latency_start = timeMs();
+            w_transfer_latency.postMessage(
+                    transfer_latency_array.buffer, [transfer_latency_array.buffer]);
+        }
+    } else {
+        document.getElementById("latency").innerHTML = "ERROR: No Web Worker support.";
+    }
+}
+
+function transferBandwidthStart() {
+    transfer_bandwidth_i = iterations;
+
+    if(typeof(Worker) !== "undefined") {
+        if(typeof(w_transfer_bandwidth) == "undefined") {
+            w_transfer_bandwidth = new Worker("ww_transfer_roundtrip.js");
+            
+            w_transfer_bandwidth.addEventListener('message', function(event) {
+                if (transfer_bandwidth_array_size > bandwidth_array_size_max) {
+                    return;
+                }
+                
+                transfer_bandwidth_i -= 1;
+                
+                if (transfer_bandwidth_i != 0) {
+                    w_transfer_bandwidth.postMessage(
+                        event.data, [event.data]);
+                }
+                else {
+                    var duration = timeMs() - transfer_bandwidth_start;
+                    var overhead_start = timeMs();
+
+                    for (var i = 0; i < iterations; i++) {
+                    }
+
+                    duration -= timeMs() - overhead_start;
+                    duration = (duration/iterations)/2;
+                    document.getElementById("transfer_bandwidth").innerHTML +=
+                        transfer_bandwidth_array_size + " B "
+                    +   duration + " ms "
+                    +   (transfer_bandwidth_array_size/1024)/(duration/1000) + " kB/s\n";
+
+                    if (transfer_bandwidth_array_size <= bandwidth_array_size_max) {
+                        transfer_bandwidth_array_size *= 2;
+                        transfer_bandwidth_array = getArray(transfer_bandwidth_array_size);
+                        transfer_bandwidth_i = iterations;
+                        transfer_bandwidth_start = timeMs();
+                        w_transfer_bandwidth.postMessage(
+                            event.data, [event.data]);
+                    }
+                }
+            }, false);
+        
+            transfer_bandwidth_start = timeMs();
+            w_transfer_bandwidth.postMessage(transfer_bandwidth_array.buffer,
+                    [transfer_bandwidth_array.buffer]);
+        }
+    } else {
+        document.getElementById("bandwidth").innerHTML = "ERROR: No Web Worker support.";
+    }
 }
 
 function latencyStop() {
     w_latency.terminate();
     w_latency = undefined;
+}
+
+function bandwidthStop() {
+    w_bandwidth.terminate();
+    w_bandwidth = undefined;
+}
+
+function transferLatencyStop() {
+    w_latency.terminate();
+    w_latency = undefined;
+}
+
+function transferBandwidthStop() {
+    w_transfer_bandwidth.terminate();
+    w_transfer_bandwidth = undefined;
 }
 </script>
 

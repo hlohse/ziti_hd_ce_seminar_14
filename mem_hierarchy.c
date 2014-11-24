@@ -3,8 +3,9 @@
 #include <time.h>
 #include <sys/time.h>    
 
-#define ARRAY_MIN (32768) /* 1/4 smallest cache, 128kB L1 => 32k*4B */
-#define ARRAY_MAX (786432) /* 1/4 largest cache, 3MB L3 => 750k*4B */
+#define ASSOCIATIVITY 8
+#define ARRAY_MIN ((int) (32*1024/sizeof(int)/ASSOCIATIVITY))
+#define ARRAY_MAX ((int) (3*1024*1024/sizeof(int)))
 
 int x[ARRAY_MAX]; /* array going to stride through */
 
