@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html
+<body>
+<script src="http://cdn.peerjs.com/0.3.9/peer.js"></script>
+<script>
+
+var peer = new Peer('p2p', {key: '8o0fs765i5dn29'});
+var connection_out = peer.connect('p2p-dummy');
+var established = false;
+
+peer.on('connection', function(connection) {
+    connection.on('data', function(data) {
+    });
+});
+
+connection_out.on('open', function() {
+    connection_out.send('hi');
+    established = true;
+    console.log('established');
+});
+
+function start() {
+    if (!established) {
+        console.log('waiting');
+        setTimeout(start, 1000);
+        return
+    }
+    console.log('GO!');
+}
+
+start();
+
+</script>
+</body>
+</html>
+
