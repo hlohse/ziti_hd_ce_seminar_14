@@ -2,36 +2,25 @@
 <html
 <body>
 <script src="http://cdn.peerjs.com/0.3.9/peer.js"></script>
+<script src="utility.js"></script>
 <script>
 
 var peer = new Peer('p2p', {key: '8o0fs765i5dn29'});
-var connection_out = peer.connect('p2p-dummy');
-var established = false;
+var iterations = 10000;
+var receivings = 0;
+var start, stop;
 
 peer.on('connection', function(connection) {
     connection.on('data', function(data) {
-        established = true;
-        console.log('established');
-        console.log(data);
+        if (receivings == 0) {
+            start = timeMs();
+        }
+        receivings++;
+        if (receivings == iterations) {
+            console.log((timeMs() - start)/iterations);
+        }
     });
 });
-
-connection_out.on('open', function() {
-    connection_out.send('from p2p');
-    established = true;
-    console.log('established');
-});
-
-function start() {
-    if (!established) {
-        console.log('waiting');
-        setTimeout(start, 1000);
-        return
-    }
-    console.log('GO!');
-}
-
-start();
 
 </script>
 </body>

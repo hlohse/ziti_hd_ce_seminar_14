@@ -7,28 +7,25 @@
 var peer = new Peer('p2p-dummy', {key: '8o0fs765i5dn29'});
 var connection_out = peer.connect('p2p');
 var established = false;
+var iterations = 10000;
 
 peer.on('connection', function(connection) {
     connection.on('data', function(data) {
-        established = true;
-        console.log('established');
-        console.log(data);
     });
 });
 
 connection_out.on('open', function() {
-    connection_out.send('from dummy');
     established = true;
-    console.log('established');
 });
 
 function start() {
     if (!established) {
-        console.log('waiting');
         setTimeout(start, 1000);
         return
     }
-    console.log('GO!');
+    for (var i = 0; i < iterations; i++) {
+        connection_out.send(1);
+    }
 }
 
 start();
