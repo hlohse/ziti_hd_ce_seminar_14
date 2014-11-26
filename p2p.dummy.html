@@ -6,6 +6,7 @@
 
 var peer = new Peer('p2p-dummy', {key: '8o0fs765i5dn29'});
 var connection_out = peer.connect('p2p');
+//var connection_out = peer.connect('p2p', {reliable: true});
 var established = false;
 var iterations = 10000;
 
