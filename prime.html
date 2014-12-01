@@ -2,8 +2,6 @@
 <html>
 <body>
 
-<p>First 10000 primes numbers:</p>
-<p><textarea id="primes"></textarea></p>
 <button onclick="determine()">Determine</button> 
 <p><output id="time"></output></p>
 
@@ -11,13 +9,14 @@
 <script>
 
 var primes = [];
+var max = 10000000;
 
 function determine() {
     var start = timeMs();
 
-    for (var p = 2; p <= 10000; p++) {
+    for (var p = 2; p <= max; p++) {
         var is_prime = true;
-        for (var i = 2; i <= Math.sqrt(10000); i++) {
+        for (var i = 2; i <= Math.sqrt(max); i++) {
             if (p % i == 0 && p != i) {
                 is_prime = false;
                 break;
@@ -27,12 +26,6 @@ function determine() {
     }
 
     document.getElementById("time").innerHTML = timeMs() - start + "ms";
-    
-    for (var p = 2; p <= 10000; p++) {
-        if (primes[p] == true) {
-            document.getElementById("primes").innerHTML += p + "\n";
-        }
-    }
 }
 
 </script>
