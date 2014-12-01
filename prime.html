@@ -2,21 +2,27 @@
 <html>
 <body>
 
-<button onclick="determine()">Determine</button> 
-<p><output id="time"></output></p>
+<p><button onclick="determineJs()">JavaScript</button> 
+<output id="timeJs"></output></p>
+
+<p><button onclick="determineAsmJs()">asm.js</button> 
+<output id="timeAsmJs"></output></p>
+
+<p><textarea id="primes"></textarea></p>
 
 <script src="utility.js"></script>
 <script>
 
-var primes = [];
-var max = 10000000;
+var maxJs    = 1+10000000;
+var maxAsmJs = maxJs|0;
 
-function determine() {
+function determineJs() {
+    var primes = [];
     var start = timeMs();
 
-    for (var p = 2; p <= max; p++) {
+    for (var p = 2; p <= maxJs; p++) {
         var is_prime = true;
-        for (var i = 2; i <= Math.sqrt(max); i++) {
+        for (var i = 2; i <= Math.sqrt(maxJs); i++) {
             if (p % i == 0 && p != i) {
                 is_prime = false;
                 break;
@@ -25,7 +31,28 @@ function determine() {
         primes[p] = is_prime;
     }
 
-    document.getElementById("time").innerHTML = timeMs() - start + "ms";
+    document.getElementById("timeJs").innerHTML =
+        timeMs() - start + "ms";
+}
+
+function determineAsmJs() {
+    var primes = new Int32Array(maxAsmJs);
+    var start = +timeMs();
+
+    for (var p = (2|0); p <= maxAsmJs; p++) {
+        var is_prime = (1|0);
+        for (var i = (2|0); i <= (Math.sqrt(maxAsmJs)|0); i++) {
+            if (p % i == (0|0) && p != i) {
+                is_prime = (0|0);
+                break;
+            }
+        }
+        primes[p] = is_prime;
+    }
+
+    var stop = +timeMs();
+    document.getElementById("timeAsmJs").innerHTML =
+        +stop - +start + "ms";
 }
 
 </script>

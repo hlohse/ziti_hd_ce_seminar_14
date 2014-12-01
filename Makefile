@@ -15,7 +15,7 @@ else
     CCFLAGS += $(DEBFLAGS)
 endif
 
-all: c js
+all: c js prime primejs
 
 c: $(TARGET)
 
@@ -30,7 +30,13 @@ $(TARGET).js: $(SOURCE)
 %.o: %.c
 	$(CC) $(CCFLAGS) -c -o $@ $<
 
+prime: prime.c
+	$(CC) $(CCFLAGS) prime.c -o prime
+
+primejs: prime.c
+	$(EMCC) $(CCFLAGS) prime.c -o prime.js
+
 .PHONY: clean
 clean:
-	-@rm $(TARGET) $(TARGET).js* *.d *.o 2>/dev/null || true
+	-@rm $(TARGET) $(TARGET).js* prime prime.js prime.html *.d *.o 2>/dev/null || true
 
