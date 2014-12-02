@@ -2,13 +2,16 @@
 <html
 <body>
 <script src="http://cdn.peerjs.com/0.3.9/peer.js"></script>
+<script src="utility.js"></script>
 <script>
 
 var peer = new Peer('p2p-dummy', {key: '8o0fs765i5dn29'});
-var connection_out = peer.connect('p2p');
-//var connection_out = peer.connect('p2p', {reliable: true});
+//var connection_out = peer.connect('p2p');
+var connection_out = peer.connect('p2p', {reliable: true});
 var established = false;
-var iterations = 10000;
+var latency_iterations = 100;
+var bandwidth_iterations = 1;
+var max_size = 16*1024*1024;
 
 peer.on('connection', function(connection) {
     connection.on('data', function(data) {
@@ -24,8 +27,15 @@ function start() {
         setTimeout(start, 1000);
         return
     }
-    for (var i = 0; i < iterations; i++) {
+    for (var i = 0; i < latency_iterations; i++) {
         connection_out.send(1);
+    }
+    for (var s = 1; s <= max_size; s *= 2) {
+        console.log(s);
+        var data = [getArray(s).buffer];
+        for (var j = 0; j < bandwidth_iterations; j++) {
+            connection_out.send(data);
+        }
     }
 }
 

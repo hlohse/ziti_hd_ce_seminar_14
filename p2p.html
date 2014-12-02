@@ -6,18 +6,39 @@
 <script>
 
 var peer = new Peer('p2p', {key: '8o0fs765i5dn29'});
-var iterations = 10000;
+var latency_iterations = 100;
+var bandwidth_iterations = 1;
 var receivings = 0;
 var start, stop;
 
 peer.on('connection', function(connection) {
     connection.on('data', function(data) {
-        if (receivings == 0) {
+        var bw_recv = receivings - latency_iterations;
+        if (receivings == 0
+        || receivings > latency_iterations
+            && bw_recv % bandwidth_iterations == 0)
+        {
             start = timeMs();
         }
+        
         receivings++;
-        if (receivings == iterations) {
-            console.log((timeMs() - start)/iterations);
+        
+        if (receivings == latency_iterations) {
+            console.log('latency ' + (timeMs() - start)
+                /latency_iterations);
+            start = timeMs();
+        } else {
+            if (receivings > latency_iterations
+            &&  bw_recv % bandwidth_iterations == 0)
+            {
+                var time_s = (timeMs() - start)/bandwidth_iterations/1000;
+                var exp = bw_recv / bandwidth_iterations;
+                var size_mb = Math.pow(2, exp) / 1024 / 1024;
+                var bw = size_mb/time_s;
+                console.log('bw ' + size_mb + 'MB ' + bw +
+                        ' (' + time_s + 's)');
+                start = timeMs();
+            }
         }
     });
 });
