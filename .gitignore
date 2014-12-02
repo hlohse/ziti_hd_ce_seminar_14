@@ -1,4 +1,8 @@
 pointer_chasing
+pointer_chasing.js*
+prime
+prime.js*
+.~lock*
 *.swp
 *.d
 
