@@ -18,7 +18,7 @@
 
 <script src="utility.js"></script>
 <script>
-var iterations = 10000;
+var iterations = 1000000;
 
 var w_latency;
 var latency_i;
@@ -27,7 +27,7 @@ var latency_start;
 
 var w_bandwidth;
 var bandwidth_i;
-var bandwidth_array_size_max = 8 * 1024 * 1024;
+var bandwidth_array_size_max = 256 * 1024 * 1024;
 var bandwidth_array_size = 1;
 var bandwidth_array = getArray(bandwidth_array_size);
 var bandwidth_start;
@@ -105,7 +105,7 @@ function bandwidthStart() {
                     document.getElementById("bandwidth").innerHTML +=
                         bandwidth_array_size + " B "
                     +   duration + " ms "
-                    +   (bandwidth_array_size/1024)/(duration/1000) + " kB/s\n";
+                    +   (bandwidth_array_size/1024/1024)/(duration/1000) + " MB/s\n";
 
                     if (bandwidth_array_size <= bandwidth_array_size_max) {
                         bandwidth_array_size *= 2;
@@ -190,7 +190,7 @@ function transferBandwidthStart() {
                     document.getElementById("transfer_bandwidth").innerHTML +=
                         transfer_bandwidth_array_size + " B "
                     +   duration + " ms "
-                    +   (transfer_bandwidth_array_size/1024)/(duration/1000) + " kB/s\n";
+                    +   (transfer_bandwidth_array_size/1024/1024)/(duration/1000) + " MB/s\n";
 
                     if (transfer_bandwidth_array_size <= bandwidth_array_size_max) {
                         transfer_bandwidth_array_size *= 2;
