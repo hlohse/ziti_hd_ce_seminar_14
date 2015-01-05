@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.12.3)  5 JAN 2015 15:54
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.12.3)  5 JAN 2015 17:08
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -602,27 +602,36 @@ Management
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 20--22
+[]\T1/ptm/m/n/8 https://hacks.mozilla.org/2014/05/asm-js-performance-improvemen
+ts-in-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 26--28
 []\T1/ptm/m/n/8 https://blog.mozilla.org/blog/2014/03/12/mozilla-and-epic-previ
 ew-
  []
 
-) [3] (./paper.aux) ) 
+) [3] (./paper.aux)
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ ) 
 Here is how much of TeX's memory you used:
- 5617 strings out of 493304
- 84874 string characters out of 6139871
- 160367 words of memory out of 5000000
- 8980 multiletter control sequences out of 15000+600000
+ 5618 strings out of 493304
+ 84887 string characters out of 6139871
+ 161370 words of memory out of 5000000
+ 8981 multiletter control sequences out of 15000+600000
  112275 words of font info for 113 fonts, out of 8000000 for 9000
  960 hyphenation exceptions out of 8191
- 38i,6n,40p,753b,1667s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc
-}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/
-share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/t
-exlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-di
-st/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texlive/texmf-dist/fonts/type1
-/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr
-i8a.pfb>
-Output written on paper.pdf (3 pages, 189999 bytes).
+ 38i,6n,40p,761b,1667s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
+e/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/f
+onts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/
+times/utmbi8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.p
+fb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on paper.pdf (3 pages, 190873 bytes).
 PDF statistics:
  43 PDF objects out of 1000 (max. 8388607)
  28 compressed objects within 1 object stream

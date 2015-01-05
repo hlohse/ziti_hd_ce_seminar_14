@@ -2,7 +2,7 @@
 
 As thoroughly explained in \cite{memory}, memory access patterns and caching effects are crucial for application performance. Yet internally, JavaScript does not necessarily use CPU native data types, but wrapper objects. While at some point execution comes down to instructions on native data types, wrapping functions induce overhead. Furthermore, when using JSON, memory layout of data is implicit. Without special functions an e.g. fixed size array of 32 bit integers cannot be instantiated, hindering cache optimizations.
 
-Mozilla identified these problems and defined asm.js to improve JavaScript performance. asm.js utilizes annotations on data that do not alter JavaScript semantics, but can be detected by the browser to define native data types. The JavaScript implementation in listing \ref{prime_js} assigns the number 2 to the variable p, whereas the asm.js implementation in listing \ref{prime_asm.js} assigns (2|0) to p. While semantically identical, an asm.js-compatible web browser will interpret (2|0) as a 32 bit integer of value 2. This allows the browser to deploy ahead-of-time optimization strategies for the following just-in-time compilation. \cite{asm.js_spec}
+Mozilla identified these problems and defined asm.js to improve JavaScript performance. asm.js utilizes annotations on data that do not alter JavaScript semantics, but can be detected by the browser to define native data types. The JavaScript implementation in listing \ref{prime_js} assigns the number 2 to the variable p, whereas the asm.js implementation in listing \ref{prime_asm.js} assigns (2|0) to p. While semantically identical, an asm.js-compatible web browser will interpret (2|0) as a 32 bit integer of value 2. This allows the browser to deploy ahead-of-time optimization strategies for the following just-in-time compilation. Several annotations for different data types exist. \cite{asm.js_spec}
 
 For additional optimizations, data structures like array can be create from functions like Int32Array. This allows the web browser to allocate an efficiently accessible array.
 
@@ -51,7 +51,7 @@ The vision of asm.js is to provide near-native application execution speed. The 
 \item \textit{asm.js:} 12,244 (1.004x)
 \end{itemize}
 
-Performance is highly dependent on the application's underlying algorithms. For this example, annotating integer values and using an Int32Array reduced to slowdown from 1.236x to 1.004x. In general, Mozilla states that Firefox is able to execute arbitrary asm.js code with a slowdown of 1.5x to 2x compared to a native binary compiled with clang. \cite{asm.js_spec}
+Performance is highly dependent on the application's underlying algorithms. For this example, annotating integer values and using an Int32Array reduced to slowdown from 1.236x to 1.004x. In general, Mozilla states that Firefox is able to execute arbitrary asm.js code with a slowdown of 1.5x to 2x compared to a native binary compiled with clang. \cite{asm.js_spec} \cite{asm.js_comp}
 
 
 \subsection{Emscripten}
@@ -60,6 +60,11 @@ Utilizing the asm.js annotations correctly must be done carefully. Additionally,
 
 For this to work, Emscripten uses the clang compiler toolchain to generate an LLVM intermediate representation (IR) of C/C++ code. LLVM, Low Level Virtual Machine, is a virtual machine with an instruction set optimized for cross compilation purposes. Given this IR, Emscripten generates asm.js code from it.
 
-This code profits amongst others from ahead-of-time optimizable instructions on native CPU data types and cache efficient data memory layouts. Furthermore, no garbage collection occurs. This is done by allocating an array used as a virtual heap where all objects are created and removed from; memory management is done manually on this array. \cite{asm.js_spec}
+This code profits amongst others from ahead-of-time optimizable instructions on native CPU data types and cache efficient data memory layouts. Even thread usage is supported. Furthermore, no garbage collection occurs. This is done by allocating an array used as a virtual heap where all objects are created and removed from; memory management is done manually on this array. \cite{asm.js_spec}
 
 In March 2014, Mozilla showed a demo of the Unreal Engine 4 video game engine compiled using Emscripten. It was running in Firefox at 67\% native speed. \cite{ue4ff}
+
+
+\subsection{Compatibility}
+
+Current versions of Firefox, Chrome and Internet Explorer support optimized execution of asm.js-compatible JavaScript. There are significant performance differences, with Firefox and Chrome around twice as fast as Internet Explorer. Safari does currently not detect asm.js code. \cite{asm.js_comp}
