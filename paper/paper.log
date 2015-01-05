@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.12.3)  5 JAN 2015 09:59
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.12.3)  5 JAN 2015 14:01
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -156,21 +156,46 @@ ference \hbox to\hsize {\normalfont \footnotesize \hfil \box \@tempboxa \hfil }
 \else \hbox to\hsize {\normalfont \footnotesize \box \@tempboxa \hfil }\fi \fi 
 \fi .
 \c@ContinuedFloat=\count93
-) (/usr/share/texlive/texmf-dist/tex/latex/ucs/ucs.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/listings/listings.sty
+\lst@mode=\count94
+\lst@gtempboxa=\box27
+\lst@token=\toks16
+\lst@length=\count95
+\lst@currlwidth=\dimen126
+\lst@column=\count96
+\lst@pos=\count97
+\lst@lostspace=\dimen127
+\lst@width=\dimen128
+\lst@newlines=\count98
+\lst@lineno=\count99
+\lst@maxwidth=\dimen129
+
+(/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2013/08/26 1.5b (Carsten Heinz)
+\c@lstnumber=\count100
+\lst@skipnumbers=\count101
+\lst@framebox=\box28
+)
+(/usr/share/texlive/texmf-dist/tex/latex/listings/listings.cfg
+File: listings.cfg 2013/08/26 1.5b listings configuration
+))
+Package: listings 2013/08/26 1.5b (Carsten Heinz)
+
+(/usr/share/texlive/texmf-dist/tex/latex/ucs/ucs.sty
 Package: ucs 2013/05/11 v2.2 UCS: Unicode input support
 
 (/usr/share/texlive/texmf-dist/tex/latex/ucs/data/uni-global.def
 File: uni-global.def 2013/05/13 UCS: Unicode global data
 )
-\uc@secondtry=\count94
-\uc@combtoks=\toks16
-\uc@combtoksb=\toks17
-\uc@temptokena=\toks18
+\uc@secondtry=\count102
+\uc@combtoks=\toks17
+\uc@combtoksb=\toks18
+\uc@temptokena=\toks19
 )
 (/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
 Package: inputenc 2008/03/30 v1.1d Input encoding file
-\inpenc@prehook=\toks19
-\inpenc@posthook=\toks20
+\inpenc@prehook=\toks20
+\inpenc@posthook=\toks21
 
 (/usr/share/texlive/texmf-dist/tex/latex/base/utf8.def
 File: utf8.def 2008/04/05 v1.1m UTF-8 support for inputenc
@@ -401,17 +426,17 @@ LaTeX Font Info:    ... okay on input line 27.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count95
-\scratchdimen=\dimen126
-\scratchbox=\box27
-\nofMPsegments=\count96
-\nofMParguments=\count97
-\everyMPshowfont=\toks21
-\MPscratchCnt=\count98
-\MPscratchDim=\dimen127
-\MPnumerator=\count99
-\makeMPintoPDFobject=\count100
-\everyMPtoPDFconversion=\toks22
+\scratchcounter=\count103
+\scratchdimen=\dimen130
+\scratchbox=\box29
+\nofMPsegments=\count104
+\nofMParguments=\count105
+\everyMPshowfont=\toks22
+\MPscratchCnt=\count106
+\MPscratchDim=\dimen131
+\MPnumerator=\count107
+\makeMPintoPDFobject=\count108
+\everyMPtoPDFconversion=\toks23
 ) (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
 )
@@ -461,7 +486,9 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
+\c@lstlisting=\count109
 
 (/usr/share/texlive/texmf-dist/tex/latex/ucs/ucsencs.def
 File: ucsencs.def 2011/01/21 Fixes to fontencodings LGR, T3
@@ -495,33 +522,52 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <7> on input line 10.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <5> on input line 10.
-) (./chapters/javascript.tex) (./chapters/asm.js.tex)
-(./chapters/webworkers.tex) (./chapters/datachannel.tex) (./chapters/webgpu.tex
-) (./chapters/conclusion.tex) [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.
-map}
+) (./chapters/javascript.tex
+<resources/html_dom.png, id=1, 569.12625pt x 408.52625pt>
+File: resources/html_dom.png Graphic file (type png)
+
+<use resources/html_dom.png>
+Package pdftex.def Info: resources/html_dom.png used on input line 7.
+(pdftex.def)             Requested size: 226.79846pt x 162.80295pt.
+ [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
 
-] [2
+]
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 32.
+ (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omsptm.fd
+File: omsptm.fd 
+)
+LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 32.
+)
+(./chapters/asm.js.tex) (./chapters/webworkers.tex) (./chapters/datachannel.tex
+) (./chapters/webgpu.tex) (./chapters/conclusion.tex)
+(./chapters/references.tex
+Overfull \hbox (20.83728pt too wide) in paragraph at lines 10--12
+[]\OT1/ptm/m/n/8 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Memory
+[]Management
+ []
 
-] (./paper.aux) ) 
+) [2 <./resources/html_dom.png>] (./paper.aux) ) 
 Here is how much of TeX's memory you used:
- 3686 strings out of 493304
- 60673 string characters out of 6139871
- 127644 words of memory out of 5000000
- 7087 multiletter control sequences out of 15000+600000
- 36230 words of font info for 66 fonts, out of 8000000 for 9000
+ 5314 strings out of 493304
+ 82132 string characters out of 6139871
+ 153174 words of memory out of 5000000
+ 8693 multiletter control sequences out of 15000+600000
+ 37366 words of font info for 67 fonts, out of 8000000 for 9000
  960 hyphenation exceptions out of 8191
- 38i,5n,38p,753b,165s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</u
-sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/shar
-e/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf
--dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texlive/texmf-dist/fonts/ty
-pe1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/u
-tmri8a.pfb>
-Output written on paper.pdf (2 pages, 50851 bytes).
+ 38i,5n,40p,753b,1245s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texlive/texmf-dist/
+fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb>
+</usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/te
+xlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dis
+t/fonts/type1/urw/times/utmri8a.pfb>
+Output written on paper.pdf (2 pages, 90607 bytes).
 PDF statistics:
- 32 PDF objects out of 1000 (max. 8388607)
- 22 compressed objects within 1 object stream
+ 39 PDF objects out of 1000 (max. 8388607)
+ 26 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 6 words of extra memory for PDF output out of 10000 (max. 10000000)
 
