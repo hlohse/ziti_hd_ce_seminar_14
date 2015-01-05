@@ -4,7 +4,7 @@
 
 They share high demands to the computational platform. Results are prefered to be achieved as fast, precise and energy efficient as possible or required. Large data sets have to be handled accordingly. Techniques to meet these demands have been explored and aggregated in the field of High Performance Computing. (HPC)
 
-Runtime and storage requirements of HPC applications traditionally exceed the capabilities of a single processor or machine. Therefore, parallel computing became the major factor for performance optimizations. Today, multiple heterogeneous processors can be used in interconnected machines. When designing an HPC application, the following aspects have to be considered:
+Runtime and storage requirements of HPC applications traditionally exceed the capabilities of a single processor or machine. Therefore, parallel computing became the major factor for performance optimizations. Today, multiple heterogeneous processors can be used in interconnected machines. When designing an HPC application, the following aspects as illustrated in Figure \ref{fig:hpcaspects} have to be considered:
 
 \begin{itemize}
 
@@ -17,6 +17,14 @@ Runtime and storage requirements of HPC applications traditionally exceed the ca
 \item \textit{Coprocessors}. Complementary processors like GPUs can be used to improve performance for certain types of algorithms. GPUs for example are highly optimized for SIMD workloads with preferably short runtimes per data point on a huge set of the latter. CUDA or other coprocessor-dependent libraries can be utilized.
 
 \end{itemize}
+
+\begin{figure}[htp]
+  \begin{center}
+    \includegraphics[width=0.9\columnwidth]{resources/hpc_aspects.png}
+  \end{center}
+  \caption{HPC design aspects illustration}
+  \label{fig:hpcaspects}
+\end{figure}
 
 These aspects are tightly coupled. Designs considered for each one are dependent on the others. Furthermore, when implementing the HPC application, optimizations are usually done for a specific platform or range of platforms. Applications come as compiled binaries. While these approaches provides the best performance, portability is not available or time-consuming.
 
