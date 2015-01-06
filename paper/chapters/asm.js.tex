@@ -1,10 +1,10 @@
 \section{asm.js} \label{chapter_asm.js}
 
-As thoroughly explained in \cite{memory}, memory access patterns and caching effects are crucial for application performance. Yet internally, JavaScript does not necessarily use CPU native data types, but wrapper objects. While at some point execution comes down to instructions on native data types, wrapping functions induce overhead. Furthermore, when using JSON, memory layout of data is implicit. Without special functions an e.g. fixed size array of 32 bit integers cannot be instantiated, hindering cache optimizations.
+As thoroughly explained in \cite{memory}, memory access patterns and caching effects are crucial for application performance. Yet internally, JavaScript does not necessarily use CPU native data types, but wrapper objects. While at some point execution comes down to instructions on native data types, wrapping functions induce overhead. Furthermore, when using JSON, memory layout of data is implicit. Without special functions, an e.g. fixed size array of 32 bit integers cannot be instantiated, hindering cache optimizations.
 
-Mozilla identified these problems and defined asm.js to improve JavaScript performance. asm.js utilizes annotations on data that do not alter JavaScript semantics, but can be detected by the browser to define native data types. The JavaScript implementation in listing \ref{prime_js} assigns the number 2 to the variable p, whereas the asm.js implementation in listing \ref{prime_asm.js} assigns (2|0) to p. While semantically identical, an asm.js-compatible web browser will interpret (2|0) as a 32 bit integer of value 2. This allows the browser to deploy ahead-of-time optimization strategies for the following just-in-time compilation. Several annotations for different data types exist. \cite{asm.js_spec}
+Mozilla identified these problems and defined asm.js to improve JavaScript performance. asm.js utilizes annotations on data that do not alter JavaScript semantics, but can be detected by the browser to use CPU native data types. The JavaScript implementation in listing \ref{prime_js} assigns the number 2 to the variable p, whereas the asm.js implementation in listing \ref{prime_asm.js} assigns (2|0) to p. While semantically identical, an asm.js-compatible web browser will interpret (2|0) as a 32 bit integer of value 2. This allows the browser to deploy ahead-of-time optimization strategies for the following just-in-time compilation by not using wrapper objects. Several annotations for different data types exist. \cite{asm.js_spec}
 
-For additional optimizations, data structures like array can be create from functions like Int32Array. This allows the web browser to allocate an efficiently accessible array.
+For additional optimizations, data structures like arrays can be created from functions like Int32Array. This allows the web browser to allocate an efficiently accessible array.
 
 \lstset{caption={JavaScript find prime numbers implementation},label=prime_js}
 \begin{lstlisting}[frame=single,basicstyle=\footnotesize]
@@ -43,7 +43,7 @@ for (var p = (2|0); p <= max; p++) {
 
 \subsection{Performance Comparison}
 
-The vision of asm.js is to provide near-native application execution speed. The implementations in figures \ref{prime_js} and \ref{prime_asm.js} have been compared to a C implementation compiled with GCC and -O3. The average runtimes in ms for finding prime numbers in the range of 2 to 10,000,000 are:
+The vision of asm.js is to provide near-native application execution speed. The implementations in figures \ref{prime_js} and \ref{prime_asm.js} have been compared to a C implementation compiled with GCC and -O3. The average runtimes on the machine used for this work in ms for finding prime numbers in the range of 2 to 10,000,000 are:
 
 \begin{itemize}
 \item \textit{C:} 12,198 (1x)
@@ -60,9 +60,9 @@ Utilizing the asm.js annotations correctly must be done carefully. Additionally,
 
 For this to work, Emscripten uses the clang compiler toolchain to generate an LLVM intermediate representation (IR) of C/C++ code. LLVM, Low Level Virtual Machine, is a virtual machine with an instruction set optimized for cross compilation purposes. Given this IR, Emscripten generates asm.js code from it.
 
-This code profits amongst others from ahead-of-time optimizable instructions on native CPU data types and cache efficient data memory layouts. Even thread usage is supported. Furthermore, no garbage collection occurs. This is done by allocating an array used as a virtual heap where all objects are created and removed from; memory management is done manually on this array. \cite{asm.js_spec}
+This code profits amongst others from ahead-of-time optimizable instructions on native CPU data types and cache efficient data memory layouts. Even thread usage is supported. Furthermore, no garbage collection occurs. This is done by allocating an array used as a virtual heap where all objects are created and removed from. Memory management is done manually on this array by Emscripten. \cite{asm.js_spec}
 
-In March 2014, Mozilla showed a demo of the Unreal Engine 4 video game engine compiled using Emscripten. It was running in Firefox at 67\% native speed. \cite{ue4ff}
+In March 2014, Mozilla showed a demo of the Unreal Engine 4 video game engine compiled to asm.js using Emscripten. It was running in Firefox at 67\% native speed. \cite{ue4ff}
 
 
 \subsection{Compatibility}

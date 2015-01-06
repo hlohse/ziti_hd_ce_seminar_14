@@ -10,11 +10,11 @@ Runtime and storage requirements of HPC applications traditionally exceed the ca
 
 \item \textit{Processor}. Determine which application parts should be executed on a distinct processor. This can be a core of a multicore CPU.
 
-\item \textit{Intra-node processing}. A machine node might contain multiple sockets for CPU, where each CPU provides multiple cores. The application design should benefit from synergetic effects of caching, memory access patterns and locality while minimizing communication overhead. For programming, pthreads or OpenMP can be used.
+\item \textit{Intra-node processing}. A machine node might contain multiple sockets for CPUs, where each CPU provides multiple cores. The application design should benefit from synergetic effects of caching, memory access patterns and locality while minimizing communication overhead. For programming, pthreads or OpenMP can be used.
 
-\item \textit{Inter-node processing}. To meet HPC applications' requirements, multiple nodes are usually connected via network. Inter-node communication is orders of magnitude slower then intra-node communication. While synergetic effects to be considered here are similar to intra-node, communication overhead induces a more significant penalty. sockets or MPI can be used for implementations.
+\item \textit{Inter-node processing}. Multiple nodes are usually connected via network. Inter-node communication is orders of magnitude slower then intra-node communication. While synergetic effects to be considered here are similar to intra-node processing, communication overhead induces a more significant penalty. sockets or MPI can be used for implementations.
 
-\item \textit{Coprocessors}. Complementary processors like GPUs can be used to improve performance for certain types of algorithms. GPUs for example are highly optimized for SIMD workloads with preferably short runtimes per data point on a huge set of the latter. CUDA or other coprocessor-dependent libraries can be utilized.
+\item \textit{Coprocessors}. Complementary processors like GPUs can be used to improve performance for certain types of computations. GPUs for example are highly optimized for SIMD workloads with preferably short runtimes per data point on a huge set of them. CUDA or other coprocessor-dependent libraries can be utilized.
 
 \end{itemize}
 
@@ -26,12 +26,12 @@ Runtime and storage requirements of HPC applications traditionally exceed the ca
   \label{fig:hpcaspects}
 \end{figure}
 
-These aspects are tightly coupled. Designs considered for each one are dependent on the others. Furthermore, when implementing the HPC application, optimizations are usually done for a specific platform or range of platforms. Applications come as compiled binaries. While these approaches provides the best performance, portability is not available or time-consuming.
+These aspects are tightly coupled. Designs considered for each one are dependent on the others. Furthermore, when implementing the HPC application, optimizations are usually done for a specific platform or range of platforms. Applications come as compiled binaries. While these approaches provide the best performance, portability is not available or time-consuming to achieve.
 
 
 \subsection{Motivation}
 
-Consumer electronics today are heterogeneous multiprocessor systems. Notebooks, Tablets and Smartphones are equipped with multicore CPUs, GPUs and wireless network technologies. While they run different and diverse operating systems hindering portability of native applications, each platform comes with a web browser.
+Consumer electronics today are heterogeneous multiprocessor systems. Notebooks, Tablets and Smartphones are equipped with multicore CPUs, GPUs and (wireless) network technologies. While they run different and diverse operating systems hindering portability of native applications, each platform comes with a web browser.
 
 Modern web browsers can be considered application platforms. They provide GUI rendering, network communication, user interaction and dynamic content control. The development of HTML5 introduced several improvements and new features, like threads or client-server sockets. Plenty of frameworks allowing developers to connect the browser frontend with a server backend exist. The JavaScript engines are constantly improved for faster script execution. And all these features work on virtually any platform with a modern web browser, resulting in inherent application portability.
 
