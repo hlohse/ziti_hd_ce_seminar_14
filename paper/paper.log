@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.12.3)  6 JAN 2015 13:10
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.12.3)  6 JAN 2015 14:09
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -420,11 +420,7 @@ LaTeX Font Info:    Try loading font information for T1+ptm on input line 100.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd
 File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
-)) (./paper.aux
-
-LaTeX Warning: Label `webrtc_comp' multiply defined.
-
-)
+)) (./paper.aux)
 \openout1 = `paper.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 28.
@@ -479,7 +475,8 @@ LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <24> not available
 (Font)              Font shape `T1/ptm/b/n' tried instead on input line 28.
 LaTeX Font Info:    Font shape `T1/ptm/bx/it' in size <24> not available
 (Font)              Font shape `T1/ptm/b/it' tried instead on input line 28.
- (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
+
+(/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count103
 \scratchdimen=\dimen130
@@ -615,25 +612,25 @@ Underfull \hbox (badness 2409) in paragraph at lines 54--1
 <resources/http.png, id=23, 292.09125pt x 89.33376pt>
 File: resources/http.png Graphic file (type png)
  <use resources/http.png>
-Package pdftex.def Info: resources/http.png used on input line 7.
+Package pdftex.def Info: resources/http.png used on input line 9.
 (pdftex.def)             Requested size: 226.79846pt x 69.36652pt.
 
 <resources/websocket.png, id=24, 356.33125pt x 226.8475pt>
 File: resources/websocket.png Graphic file (type png)
 
 <use resources/websocket.png>
-Package pdftex.def Info: resources/websocket.png used on input line 17.
+Package pdftex.def Info: resources/websocket.png used on input line 19.
 (pdftex.def)             Requested size: 226.79846pt x 144.38231pt.
+ [4 <./resources/ww_bw.png> <./resources/http.png> <./resources/websocket.png>]
 
-<resources/webrtc.png, id=25, 660.4675pt x 409.53pt>
+<resources/webrtc.png, id=28, 660.4675pt x 409.53pt>
 File: resources/webrtc.png Graphic file (type png)
 
 <use resources/webrtc.png>
-Package pdftex.def Info: resources/webrtc.png used on input line 25.
+Package pdftex.def Info: resources/webrtc.png used on input line 36.
 (pdftex.def)             Requested size: 226.79846pt x 140.62561pt.
 ) (./chapters/webgpu.tex) (./chapters/conclusion.tex) (./chapters/references.te
-x [4 <./resources/ww_bw.png> <./resources/http.png> <./resources/websocket.png>
- <./resources/webrtc.png>]
+x
 Overfull \hbox (20.83728pt too wide) in paragraph at lines 6--8
 []\T1/ptm/m/n/8 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Memory_
 Management
@@ -651,28 +648,23 @@ Underfull \hbox (badness 10000) in paragraph at lines 26--28
 ew-
  []
 
-) [5
-
-] (./paper.aux)
-
-LaTeX Warning: There were multiply-defined labels.
-
- ) 
+) [5 <./resources/webrtc.png>] (./paper.aux) ) 
 Here is how much of TeX's memory you used:
- 5646 strings out of 493304
- 85414 string characters out of 6139871
- 171468 words of memory out of 5000000
- 9005 multiletter control sequences out of 15000+600000
+ 5647 strings out of 493304
+ 85424 string characters out of 6139871
+ 171432 words of memory out of 5000000
+ 9006 multiletter control sequences out of 15000+600000
  112275 words of font info for 113 fonts, out of 8000000 for 9000
  960 hyphenation exceptions out of 8191
  38i,5n,40p,791b,1083s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
-e/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf
--dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/f
-onts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/
-times/utmbi8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.p
-fb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on paper.pdf (5 pages, 365665 bytes).
+{/usr/share/texlive/texmf-dist/fo
+nts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></u
+sr/share/texlive/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/f
+onts/type1/urw/times/utmri8a.pfb>
+Output written on paper.pdf (5 pages, 367804 bytes).
 PDF statistics:
  53 PDF objects out of 1000 (max. 8388607)
  32 compressed objects within 1 object stream
