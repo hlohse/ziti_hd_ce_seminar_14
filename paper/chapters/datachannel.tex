@@ -31,7 +31,7 @@ To solve these issues, Google implemented an early working version of the now st
 
 The DataChannel of WebRTC provides a configurable peer-to-peer socket to transport arbitrary data. Separate socket types to transport e.g. video data exist. For security reasons, a web browser cannot establish a DataChannel connection to an arbitrary address. The process to estbalish a connection is depicted in figure \ref{fig:webrtc}.
 
-A so-called signalling server is required. Address information of web browsers accessing the same service are exchanged in session informations. (????????)
+A so-called signalling server is required. Each web browser participant requests access to a certain service, like video chat or a DataChannel. This service is represented by an identifier. It can be the name of a chat room for video chats, or the name and some instance number of an HPC application using DataChannels. The signalling server gathers requests and, amongst other information, their source IP addresses. New participants can be provided with all IP addresses of already participating web browsers via session descriptions. The latter allow them to open peer-to-peer DataChannel socket connections.
 
 \begin{figure}[htp]
   \begin{center}
@@ -44,4 +44,4 @@ A so-called signalling server is required. Address information of web browsers a
 
 \subsection{Compatibility}
 
-No web browser currently implements all features of WebRTC. But Chrome and Firefox do already support DataChannels. IE INTERESSIERT??? EIGENES??? SAFARI??? \cite{webrtc_comp}
+No web browser currently implements all features of WebRTC. But Chrome and Firefox do already support DataChannels and most other features. Microsoft aims at supporting WebRTC in the future and e.g. wants to adapt Skype to browsers that way. \cite{webrtc_comp} \cite{webrtc_ie}
