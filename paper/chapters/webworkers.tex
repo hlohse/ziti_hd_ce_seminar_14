@@ -4,7 +4,8 @@ For efficient machine utilization and speedups, HPC applications must make use o
 
 Until the release of HTML5, an HTML document's JavaScript script was always executed in a single thread. To allow threaded execution, HTML5 specified Web Workers. The main thread can spawn Web Workers and assign a script file to them, as seen in listing \ref{ww_main}. This script file can contain arbitrary code to be executed in its own thread, asynchronously from the main thread. See listing \ref{ww_script}. One constraint for Web Workers is that they cannot access and manipulate the HTML document's DOM; only the main thread is able to do that.
 
-\lstset{caption={Main thread spawns Web Worker},label=ww_main}
+\begin{minipage}[c]{0.95\linewidth}
+\lstset{float,floatplacement=H,caption={Main thread spawns Web Worker},label=ww_main}
 \begin{lstlisting}[frame=single,basicstyle=\footnotesize]
 var worker = new Worker("worker_script.js");
 
@@ -14,8 +15,9 @@ worker.addEventListener("message", function(e) {
 
 worker.postMessage("Hello!");
 \end{lstlisting}
+\end{minipage}
 
-\lstset{caption={Web Worker script},label=ww_script}
+\lstset{float,caption={Web Worker script},label=ww_script}
 \begin{lstlisting}[frame=single,basicstyle=\footnotesize]
 self.addEventListener("message", function(e) {
   // Async computations go here
@@ -42,7 +44,7 @@ Additional issues may arise from sending messages of several MBs in size too fas
 
 Alternatively, transferable objects can be send via postMessage. Transferable objects are simple data structures like arrays, which need no structured cloning. The syntax used is shown in listing \ref{ww_trans}. It is important to note that sent data switch contexts. After the call to postMessage, the sender has no longer access to the data; the variable evaluates to null. Only the receiver has access now. This is realized internally by simple pointer exchanges, making bandwidth measurements obsolete. The latency for this operation on the machine used for this work is 53us. HPC applications should structure their Web Workers communication using this approach.
 
-\lstset{caption={Sending a transferable object array},label=ww_trans}
+\lstset{float,caption={Sending a transferable object array},label=ww_trans}
 \begin{lstlisting}[frame=single,basicstyle=\footnotesize]
 var array = new ArrayBuffer(1024); // 1kB
 worker.postMessage(array.buffer, [array.buffer]);

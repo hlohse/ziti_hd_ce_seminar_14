@@ -6,7 +6,7 @@ Mozilla identified these problems and defined asm.js to improve JavaScript perfo
 
 For additional optimizations, data structures like arrays can be created from functions like Int32Array. This allows the web browser to allocate an efficiently accessible array.
 
-\lstset{caption={JavaScript find prime numbers implementation},label=prime_js}
+\lstset{float,caption={JavaScript find prime numbers implementation},label=prime_js}
 \begin{lstlisting}[frame=single,basicstyle=\footnotesize]
 var primes = [];
 
@@ -23,7 +23,7 @@ for (var p = 2; p <= max; p++) {
 }
 \end{lstlisting}
 
-\lstset{caption={asm.js find prime numbers implementation},label=prime_asm.js}
+\lstset{float,caption={asm.js find prime numbers implementation},label=prime_asm.js}
 \begin{lstlisting}[frame=single,basicstyle=\footnotesize]
 var primes = new Int32Array(max);
 
